@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine 💘</title>
+  <style>
+    :root{
+      --bg1:#fff0f6;
+      --bg2:#ffe4ef;
+      --card:#ffffffcc;
+      --text:#1f1f1f;
+      --accent:#ff4d88;
+      --accent2:#7c3aed;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:
+        radial-gradient(1200px 800px at 20% 20%, var(--bg1), transparent),
+        radial-gradient(1200px 800px at 80% 80%, var(--bg2), transparent),
+        linear-gradient(135deg, #fff, #ffeef7);
+      color:var(--text);
+      padding:24px;
+      overflow:hidden;
+    }
+
+    /* floating hearts */
+    .hearts{ position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+    .heart{
+      position:absolute;
+      width:14px; height:14px;
+      background:var(--accent);
+      transform:rotate(45deg);
+      opacity:.16;
+      border-radius:3px;
+      animation: floatUp linear infinite;
+    }
+    .heart::before,.heart::after{
+      content:"";
+      position:absolute;
+      width:14px; height:14px;
+      background:var(--accent);
+      border-radius:50%;
+    }
+    .heart::before{ left:-7px; top:0; }
+    .heart::after{ top:-7px; left:0; }
+    @keyframes floatUp{
+      from{ transform:translateY(110vh) rotate(45deg); }
+      to{ transform:translateY(-20vh) rotate(45deg); }
+    }
+
+    .card{
+      width:min(760px, 100%);
+      background:var(--card);
+      backdrop-filter: blur(10px);
+      border:1px solid #ffffffaa;
+      border-radius:24px;
+      padding:34px 28px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.12);
+      text-align:center;
+      position:relative;
+    }
+
+    .badgeRow{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #eee;
+      font-size:14px;
+      opacity:.95;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+    }
+
+    h1{
+      margin:10px 0 10px;
+      font-size: clamp(26px, 4vw, 44px);
+      letter-spacing:-0.6px;
+      line-height:1.1;
+    }
+    .name{
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      font-weight:900;
+    }
+
+    .message{
+      text-align:left;
+      margin: 0 auto;
+      max-width: 620px;
+      font-size: 17px;
+      line-height:1.85;
+      opacity:.92;
+      background:#ffffffb3;
+      border:1px solid #ffffffaa;
+      border-radius:18px;
+      padding:18px;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:18px;
+      position:relative;
+      min-height:62px; /* so the No button can move inside */
+    }
+
+    button, a.button{
+      border:0;
+      padding:14px 18px;
+      border-radius:14px;
+      font-size:16px;
+      cursor:pointer;
+      font-weight:900;
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .primary{
+      background:linear-gradient(135deg, var(--accent), #ff7ab3);
+      color:#fff;
+      box-shadow: 0 12px 24px rgba(255,77,136,.25);
+    }
+    .primary:hover{ transform:translateY(-1px); box-shadow:0 14px 28px rgba(255,77,136,.32); }
+
+    .secondary{
+      background:#fff;
+      border:1px solid #f0c2d2;
+      color:#b0124a;
+      box-shadow: 0 10px 20px rgba(0,0,0,.06);
+      position:relative;
+    }
+    .secondary:hover{ transform:translateY(-1px); }
+
+    .tiny{
+      margin-top:14px;
+      font-size:13px;
+      opacity:.65;
+    }
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,.45);
+      padding:24px;
+    }
+    .modal.open{ display:flex; }
+    .modalCard{
+      width:min(560px, 100%);
+      background:white;
+      border-radius:24px;
+      padding:26px;
+      text-align:center;
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .confetti{
+      position:absolute; inset:-40px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,77,136,.35), transparent 35%),
+        radial-gradient(circle at 90% 30%, rgba(124,58,237,.28), transparent 38%),
+        radial-gradient(circle at 50% 90%, rgba(255,200,0,.22), transparent 42%);
+      opacity:.9;
+    }
+    .modalCard > *{ position:relative; z-index:1; }
+    .big{
+      font-size: clamp(26px, 4vw, 36px);
+      margin:6px 0 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
+
+  <main class="card">
+    <div class="badgeRow">
+      <div class="badge"><span class="dot"></span> The question 💘</div>
+      <div class="badge">From Jayden</div>
+    </div>
+
+    <h1>
+      will you be my Valentine? 💝
+    </h1>
+
+    <div class="message">
+      <p style="margin-top:0;">
+        I know we’re doing this from a distance, but I still want you to feel special.
+      </p>
+      <p>
+        I want to make you smile and remind you that you’re loved
+        more than you ever have to question.
+      </p>
+      <p style="margin-bottom:0;">
+        So… will you be my Valentine? 💗
+      </p>
+    </div>
+
+    <div class="actions" id="btnArea">
+      <button class="primary" id="yesBtn">Yes 😍</button>
+      <button class="secondary" id="noBtn">No </button>
+      <a class="button secondary" href="page3.html">Go back</a>
+    </div>
+
+  </main>
+
+  <section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modalCard">
+      <div class="confetti" aria-hidden="true"></div>
+      <h2 class="big" id="modalTitle">Yessss! 🥳💖</h2>
+     
+      <button class="primary" id="closeBtn">Close</button>
+    </div>
+  </section>
+
+  <script>
+    // floating hearts
+    const hearts = document.getElementById("hearts");
+    const makeHeart = () => {
+      const h = document.createElement("div");
+      h.className = "heart";
+      const left = Math.random() * 100;
+      const dur = 6 + Math.random() * 8;
+      const size = 10 + Math.random() * 18;
+      h.style.left = left + "vw";
+      h.style.animationDuration = dur + "s";
+      h.style.width = size + "px";
+      h.style.height = size + "px";
+      h.style.opacity = 0.10 + Math.random() * 0.18;
+      hearts.appendChild(h);
+      setTimeout(() => h.remove(), dur * 1000);
+    };
+    setInterval(makeHeart, 250);
+
+    // Modal open/close
+    const modal = document.getElementById("modal");
+    const yesBtn = document.getElementById("yesBtn");
+    const closeBtn = document.getElementById("closeBtn");
+
+    yesBtn.addEventListener("click", () => modal.classList.add("open"));
+    closeBtn.addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("open");
+    });
+
+    // Playful "No" button movement
+    const noBtn = document.getElementById("noBtn");
+    const btnArea = document.getElementById("btnArea");
+    let noMoves = 0;
+
+    function moveNoButton(){
+      const areaRect = btnArea.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+      const maxX = areaRect.width - btnRect.width;
+      const maxY = areaRect.height - btnRect.height;
+
+      const x = Math.max(0, Math.random() * maxX);
+      const y = Math.max(0, Math.random() * maxY);
+
+      noBtn.style.position = "absolute";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", () => {
+      noMoves++;
+      moveNoButton();
+      if (noMoves >= 6) noBtn.textContent = "Okay okay… YES ";
+    });
+
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      noMoves++;
+      moveNoButton();
+      if (noMoves >= 6) noBtn.textContent = "Okay okay… YES ";
+    }, { passive:false });
+
+    noBtn.addEventListener("click", () => {
+      noMoves++;
+      if (noMoves >= 6) modal.classList.add("open");
+      else moveNoButton();
+    });
+  </script>
+</body>
+</html>

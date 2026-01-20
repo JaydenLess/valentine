@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One More Thing… 💗</title>
+  <style>
+    :root{
+      --bg1:#fff0f6;
+      --bg2:#ffe4ef;
+      --card:#ffffffcc;
+      --text:#1f1f1f;
+      --accent:#ff4d88;
+      --accent2:#7c3aed;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:
+        radial-gradient(1200px 800px at 20% 20%, var(--bg1), transparent),
+        radial-gradient(1200px 800px at 80% 80%, var(--bg2), transparent),
+        linear-gradient(135deg, #fff, #ffeef7);
+      color:var(--text);
+      padding:24px;
+    }
+
+    /* floating hearts */
+    .hearts{ position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+    .heart{
+      position:absolute;
+      width:14px; height:14px;
+      background:var(--accent);
+      transform:rotate(45deg);
+      opacity:.16;
+      border-radius:3px;
+      animation: floatUp linear infinite;
+    }
+    .heart::before,.heart::after{
+      content:"";
+      position:absolute;
+      width:14px; height:14px;
+      background:var(--accent);
+      border-radius:50%;
+    }
+    .heart::before{ left:-7px; top:0; }
+    .heart::after{ top:-7px; left:0; }
+    @keyframes floatUp{
+      from{ transform:translateY(110vh) rotate(45deg); }
+      to{ transform:translateY(-20vh) rotate(45deg); }
+    }
+
+    .card{
+      width:min(760px, 100%);
+      background:var(--card);
+      backdrop-filter: blur(10px);
+      border:1px solid #ffffffaa;
+      border-radius:24px;
+      padding:34px 28px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.12);
+      text-align:center;
+    }
+
+    .badgeRow{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #eee;
+      font-size:14px;
+      opacity:.95;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+    }
+
+    h1{
+      margin:10px 0 10px;
+      font-size: clamp(26px, 4vw, 42px);
+      letter-spacing:-0.5px;
+    }
+    .name{
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      font-weight:900;
+    }
+
+    .message{
+      text-align:left;
+      margin: 0 auto;
+      max-width: 620px;
+      font-size: 17px;
+      line-height:1.85;
+      opacity:.92;
+      background:#ffffffb3;
+      border:1px solid #ffffffaa;
+      border-radius:18px;
+      padding:18px;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    a.button{
+      text-decoration:none;
+      padding:14px 18px;
+      border-radius:14px;
+      font-size:16px;
+      font-weight:900;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+    }
+    .primary{
+      background:linear-gradient(135deg, var(--accent), #ff7ab3);
+      color:#fff;
+      box-shadow: 0 12px 24px rgba(255,77,136,.25);
+    }
+    .primary:hover{ transform:translateY(-1px); box-shadow:0 14px 28px rgba(255,77,136,.32); }
+
+    .secondary{
+      background:#fff;
+      border:1px solid #f0c2d2;
+      color:#b0124a;
+      box-shadow: 0 10px 20px rgba(0,0,0,.06);
+    }
+    .secondary:hover{ transform:translateY(-1px); }
+
+    .tiny{
+      margin-top:14px;
+      font-size:13px;
+      opacity:.65;
+    }
+    .memories{
+  margin: 18px auto 0;
+  max-width: 620px;
+  background:#ffffffb3;
+  border:1px solid #ffffffaa;
+  border-radius:18px;
+  padding:14px;
+  text-align:left;
+}
+
+.memories h3{
+  margin:0 0 10px;
+  font-size:14px;
+  letter-spacing:.2px;
+  opacity:.85;
+}
+
+.mediaGrid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:10px;
+}
+
+.mediaGrid img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:14px;
+  border:1px solid #ffffffaa;
+}
+
+.memories video{
+  width:100%;
+  margin-top:10px;
+  border-radius:14px;
+  border:1px solid #ffffffaa;
+}
+
+@media (max-width: 640px){
+  .mediaGrid{ grid-template-columns: repeat(2, 1fr); }
+  .mediaGrid img{ height:120px; }
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
+
+  <main class="card">
+    <div class="badgeRow">
+
+    </div>
+
+
+    <div class="message">
+     
+
+      <p>
+   I just want you to know this comes from a real place.
+        No pressure, no stress — just something sweet I want to share with you.
+      </p>
+
+      <p style="margin-bottom:0;">
+        So… there’s one more thing I want to ask you.
+        It’s simple, but it means a lot to me.
+      </p>
+    </div>
+
+    <div class="actions">
+      <!-- We'll point this to the valentine page next step. For now it goes nowhere important. -->
+      <a class="button primary" href="page4.html">Okay… ➜</a>
+      <a class="button secondary" href="page2.html">Go back</a>
+    </div>
+    <div class="memories">
+  <h3>Some of my favorite moments with you 💗</h3>
+
+  <div class="mediaGrid">
+    <img src="IMG_7905.png" alt="Memory 1" />
+    <img src="IMG_3803.png" alt="Memory 2" />
+    <img src="IMG_2419.png" alt="Memory 3" />
+  </div>
+
+  <!-- Optional: include a short video too -->
+</div>
+
+
+    <div class="tiny">Take your time 💗</div>
+  </main>
+
+  <script>
+    const hearts = document.getElementById("hearts");
+    const makeHeart = () => {
+      const h = document.createElement("div");
+      h.className = "heart";
+      const left = Math.random() * 100;
+      const dur = 6 + Math.random() * 8;
+      const size = 10 + Math.random() * 18;
+      h.style.left = left + "vw";
+      h.style.animationDuration = dur + "s";
+      h.style.width = size + "px";
+      h.style.height = size + "px";
+      h.style.opacity = 0.10 + Math.random() * 0.18;
+      hearts.appendChild(h);
+      setTimeout(() => h.remove(), dur * 1000);
+    };
+    setInterval(makeHeart, 250);
+  </script>
+</body>
+</html>

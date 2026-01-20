@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Krista 💗</title>
+  <style>
+    :root{
+      --bg1:#fff0f6;
+      --bg2:#ffe4ef;
+      --card:#ffffffcc;
+      --text:#1f1f1f;
+      --accent:#ff4d88;
+      --accent2:#7c3aed;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:
+        radial-gradient(1200px 800px at 20% 20%, var(--bg1), transparent),
+        radial-gradient(1200px 800px at 80% 80%, var(--bg2), transparent),
+        linear-gradient(135deg, #fff, #ffeef7);
+      color:var(--text);
+      padding:24px;
+    }
+
+    /* soft floating hearts */
+    .hearts{ position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+    .heart{
+      position:absolute;
+      width:14px; height:14px;
+      background:var(--accent);
+      transform:rotate(45deg);
+      opacity:.16;
+      border-radius:3px;
+      animation: floatUp linear infinite;
+    }
+    .heart::before,.heart::after{
+      content:"";
+      position:absolute;
+      width:14px; height:14px;
+      background:var(--accent);
+      border-radius:50%;
+    }
+    .heart::before{ left:-7px; top:0; }
+    .heart::after{ top:-7px; left:0; }
+    @keyframes floatUp{
+      from{ transform:translateY(110vh) rotate(45deg); }
+      to{ transform:translateY(-20vh) rotate(45deg); }
+    }
+
+    .card{
+      width:min(760px, 100%);
+      background:var(--card);
+      backdrop-filter: blur(10px);
+      border:1px solid #ffffffaa;
+      border-radius:24px;
+      padding:34px 28px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.12);
+      text-align:center;
+    }
+
+    .title{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-bottom:18px;
+    }
+    .for{
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight:900;
+      letter-spacing:-0.6px;
+      line-height:1.05;
+    }
+    .from{
+      font-size: 16px;
+      opacity:.8;
+      font-weight:700;
+    }
+    .name{
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .message{
+      text-align:left;
+      margin: 0 auto;
+      max-width: 620px;
+      font-size: 17px;
+      line-height:1.8;
+      opacity:.92;
+      background:#ffffffb3;
+      border:1px solid #ffffffaa;
+      border-radius:18px;
+      padding:18px 18px;
+    }
+
+    .signature{
+      margin-top:18px;
+      font-weight:800;
+      color:#111;
+    }
+    .signature span{
+      color:var(--accent);
+    }
+
+    .tiny{
+      margin-top:10px;
+      font-size:13px;
+      opacity:.65;
+    }
+    .memories{
+  margin: 18px auto 0;
+  max-width: 620px;
+  background:#ffffffb3;
+  border:1px solid #ffffffaa;
+  border-radius:18px;
+  padding:14px;
+  text-align:left;
+}
+
+.memories h3{
+  margin:0 0 10px;
+  font-size:14px;
+  letter-spacing:.2px;
+  opacity:.85;
+}
+
+.mediaGrid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:10px;
+}
+
+.mediaGrid img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:14px;
+  border:1px solid #ffffffaa;
+}
+
+.memories video{
+  width:100%;
+  margin-top:10px;
+  border-radius:14px;
+  border:1px solid #ffffffaa;
+}
+
+@media (max-width: 640px){
+  .mediaGrid{ grid-template-columns: repeat(2, 1fr); }
+  .mediaGrid img{ height:120px; }
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
+
+  <main class="card">
+    <div class="title">
+      <div class="for">For <span class="name">Krista</span></div>
+      <div class="from">From <span class="name">Jayden</span></div>
+    </div>
+
+    <div class="message">
+      <p style="margin-top:0;">
+        I know long distance is hard sometimes. There are days we can’t do the simple things
+        like hold hands, hug, or just be next to each other… and I feel that.
+      </p>
+
+      <p>
+        But I want you to know how much I appreciate you. Thank you for choosing us,
+        for being patient, and for loving me the way you do, even from far away.
+      </p>
+
+      <p style="margin-bottom:0;">
+        I love you more than I can explain. I’m proud of you, I’m grateful for you,
+        and I’m always with you, even when I’m not physically there.
+      </p>
+    </div>
+<div style="margin-top:22px;">
+  <a href="page2.html"
+     style="
+       display:inline-block;
+       padding:14px 22px;
+       border-radius:14px;
+       font-weight:900;
+       text-decoration:none;
+       color:white;
+       background:linear-gradient(135deg, #ff4d88, #ff7ab3);
+       box-shadow:0 12px 24px rgba(255,77,136,.25);
+     ">
+    Continue ➜
+  </a>
+</div>
+<div class="memories">
+  <h3>Some of my favorite moments with you 💗</h3>
+
+  <div class="mediaGrid">
+    <img src="IMG_1992.png" alt="Memory 1" />
+    <img src="IMG_5485 2.png" alt="Memory 2" />
+    <img src="IMG_6727.png" alt="Memory 3" />
+  </div>
+
+  <!-- Optional: include a short video too -->
+  <video controls playsinline>
+    <source src="947E224C-6C2F-4210-9441-5893313C09BB.MP4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
+    <div class="signature">YEAH BAI 💗</div>
+  </main>
+
+  <script>
+    // floating hearts
+    const hearts = document.getElementById("hearts");
+    const makeHeart = () => {
+      const h = document.createElement("div");
+      h.className = "heart";
+      const left = Math.random() * 100;
+      const dur = 6 + Math.random() * 8;
+      const size = 10 + Math.random() * 18;
+      h.style.left = left + "vw";
+      h.style.animationDuration = dur + "s";
+      h.style.width = size + "px";
+      h.style.height = size + "px";
+      h.style.opacity = 0.10 + Math.random() * 0.18;
+      hearts.appendChild(h);
+      setTimeout(() => h.remove(), dur * 1000);
+    };
+    setInterval(makeHeart, 250);
+  </script>
+</body>
+</html>
